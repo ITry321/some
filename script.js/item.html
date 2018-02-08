@@ -1,0 +1,74 @@
+<h2>Item page</h2>
+<div class="row">
+    <div class="col-12">
+        <form action="">
+            <div class="form-group row">
+                <label class="col-form-label col-2" for="category">Category:</label>
+                <div class="col-10">
+                    <select ng-options="category as category.name for category in item.categories track by category.id" id="category" class="form-control" ng-model="item.currentItem.category"></select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-2" for="name">Name:</label>
+                <div class="col-10">
+                    <input type="text" class="form-control" id="name" ng-model="item.currentItem.name"> </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-2" for="price">Price:</label>
+                <div class="col-10">
+                    <input type="text" class="form-control" id="price" ng-model="item.currentItem.price"> </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-2" for="size">Size:</label>
+                <div class="col-10">
+                    <input type="text" class="form-control" id="size" ng-model="item.currentItem.size"> </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-10 ml-auto">
+                    <button type="button" class="btn btn-outline-success btn-sm" ng-click="item.save()">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-2">
+        <div class="row">
+            <div class="col-12">
+                <input type="text" class="form-control" ng-model="item.search"> </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <input type="text" ng-model="item.min" placeholder="min">
+        </div>
+         <div class="col-6">
+            <input type="text" ng-model="item.max" placeholder="max">
+        </div>
+    </div>
+    <div class="col-10">
+        <table class="table table-bordered">
+            <tr>
+                <th class="text-center">Category</th>
+                <th class="text-center">Name</th>
+                <th class="text-center">Price</th>
+                <th class="text-center">Size</th>
+                <th class="text-center">Options</th>
+            </tr>
+            <tr ng-repeat="itemElem in item.items | searchItem:item.search | limitTo:item.size:(item.page-1)*item.size | minMaxPrice:item.min:item.max track by itemElem.id">
+                <td>{{itemElem.category.name}}</td>
+                <td>{{itemElem.name}}</td>
+                <td>{{itemElem.price | currency:"$"}}</td>
+                <td>{{itemElem.size}}</td>
+                <td>
+                    <button class="btn btn-outline-warning btn-sm" type="button" ng-click="item.update(itemElem)">update</button>
+                    <button class="btn btn-outline-danger btn-sm" type="button" ng-click="item.delete(index)">delete</button>
+                </td>
+            </tr>
+        </table>
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#" ng-click="item.previous($event)">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#" ng-click="item.next($event)">Next</a></li>
+        </ul>
+    </div>
+</div>

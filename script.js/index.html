@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-route.min.js"></script>
+    <script src="main.js"></script>
+    <script src="home.js"></script>
+    <script src="item.js"></script>
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+   <h2>Header</h2>
+   <a href="#!/">Home</a>
+   <a href="#!/item">Item</a>
+   <div class="container">
+       <ng-view></ng-view>
+   </div>
+   <h2>Footer</h2>
+    
+</body>
+</html>
